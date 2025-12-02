@@ -5,4 +5,8 @@ project(http_server)
 
 include_directories(include)
 
+add_library(server src/server.cpp src/request.cpp src/response.cpp)
+
 add_executable(main main.cpp)
+
+target_link_libraries(main server)
