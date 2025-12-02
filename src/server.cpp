@@ -4,9 +4,7 @@
 Server::Server()
 {
 
-
-
-
+	setup();
 };
 
 
@@ -37,6 +35,13 @@ void Server::setup()
 	if(bind(socket, (struct sockaddr*)&addr, addrlen) < 0)
 	{
 		perror("bind failed");
+		close(socket);
+		exit(EXIT_FAILURE);
+	};
+
+	if(listen(socket, 5) == -1)
+	{
+		perror("listen failed");
 		close(socket);
 		exit(EXIT_FAILURE);
 	}
