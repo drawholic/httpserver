@@ -14,17 +14,17 @@ void Server::setup()
 	int addrlen = sizeof(sockaddr);
 
 
-	socket = socket(AF_INET, SOCK_STREAM, 0);
-	if(socket == 0)
+	fd = socket(AF_INET, SOCK_STREAM, 0);
+	if(fd == 0)
 	{
 		perror("socket failure");
 		exit(EXIT_FAILURE);
 	}
 
-	if(setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)))
+	if(setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)))
 	{
 		perror("setsockopt SO_REUSEADDR failed");
-		close(socket);
+		close(fd);
 		exit(EXIT_FAILURE);
 	};
 
@@ -32,17 +32,28 @@ void Server::setup()
 	addr.sin_addr.s_addr = INADDR_ANY;
 	addr.sin_port = port = htons(8080);
 
-	if(bind(socket, (struct sockaddr*)&addr, addrlen) < 0)
+	if(bind(fd, (struct sockaddr*)&addr, addrlen) < 0)
 	{
 		perror("bind failed");
-		close(socket);
+		close(fd);
 		exit(EXIT_FAILURE);
 	};
 
-	if(listen(socket, 5) == -1)
+	if(listen(fd, 5) == -1)
 	{
 		perror("listen failed");
-		close(socket);
+		close(fd);
 		exit(EXIT_FAILURE);
 	}
+};
+
+
+void Server::loop()
+{
+	int client;
+
+	while(client = accept(fd, 0, 0))
+	{
+
+	};
 };
