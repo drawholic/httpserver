@@ -6,7 +6,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-
+const int BUF_MAX = 2048;
 
 class Server
 {
@@ -15,6 +15,8 @@ class Server
 	uint16_t port;
 
 	void setup();
+
+	char buffer[BUF_MAX];
 
 public:
 	Server();
