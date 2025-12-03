@@ -21,9 +21,9 @@ class Server
 
 	char buffer[BUF_MAX];
 
-	void handle_client();
+	void handle_client(int);
 
-	
+
 
 public:
 	Server();
