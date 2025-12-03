@@ -83,3 +83,19 @@ void Request::set_request_str(const char* req)
 	strncpy(request_str, req, strlen(req));
 	request_str[strlen(req)] = 0;
 };	
+
+MethodEnum get_method_enum(const char* method)
+{
+	if(!strcmp(method, "GET"))
+		return GET;
+	if(!strcmp(method, "POST"))
+		return POST;
+	if(!strcmp(method, "DELETE"))
+		return DELETE;
+	if(!strcmp(method, "HEAD"))
+		return HEAD;
+	if(!strcmp(method, "PATCH"))
+		return PATCH;
+	if(!strcmp(method, "PUT"))
+		return PUT;
+};
