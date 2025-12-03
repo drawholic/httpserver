@@ -1,6 +1,8 @@
 #ifndef REQUEST_HPP
 #define REQUEST_HPP
 
+#include <cstring>
+
 class Request
 {
 	char* request_str;
