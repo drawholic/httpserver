@@ -7,7 +7,9 @@
 #include <unistd.h>
 #include <cstdlib>
 #include <cstdio>
-const int BUF_MAX = 2048;
+#include <iostream>
+
+const int BUF_MAX = 1024;
 
 class Server
 {
