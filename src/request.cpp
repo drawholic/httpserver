@@ -2,7 +2,7 @@
 
 Request::Request()
 {
-
+	request_str = 0;
 };
 
 char* Request::get_method()
@@ -17,9 +17,11 @@ char* Request::get_method()
 	char* method = new char[len+1];
 	memcpy(method, request_str, len);
 	method[len] = 0;
-	
+
 	return method;
 };
+
+
 
 char* Request::get_headers()
 {
@@ -29,6 +31,26 @@ char* Request::get_headers()
 char* Request::get_body()
 {
 
+};
+
+char* Request::get_url()
+{
+	if(!request_str) return 0;
+
+	char* space1 = strchr(request_str, ' ');
+	if(!space1) return 0;
+
+	char* space2 = strchr(space1 + 1, ' ');
+
+	if(!space2) return 0;
+
+	size_t len = space2 - (space1 + 1);
+
+	char* url = new char[len+1];
+	memcpy(url, space1+1, len);
+	url[len] = 0;
+
+	return url;
 };
 
 #include <iostream>
@@ -53,7 +75,7 @@ char* Request::get_startline()
 
 void Request::set_request_str(const char* req)
 {
-	if(!request_str)
+	if(request_str)
 		delete[] request_str;
 
 	request_str = new char[strlen(req)];
