@@ -17,6 +17,7 @@ public:
 	char* get_startline();
 	char* get_headers();
 	char* get_body();
+	char* get_url();
 
 	void set_request_str(const char*);
 };
