@@ -47,6 +47,17 @@ void Server::setup()
 	}
 };
 
+void Server::handle_client(int client)
+{
+	unsigned bytes;
+
+	while(bytes = recv(client, buffer, BUF_MAX -1, 0))
+	{
+		buffer[bytes] = 0;
+	};
+
+	close(client);
+};
 
 void Server::loop()
 {
