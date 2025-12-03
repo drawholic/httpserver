@@ -21,13 +21,6 @@ char* Request::get_method()
 	return method;
 };
 
-
-
-char* Request::get_headers()
-{
-
-};
-
 char* Request::get_body()
 {
 
@@ -52,8 +45,27 @@ char* Request::get_url()
 
 	return url;
 };
-
 #include <iostream>
+
+char* Request::get_headers()
+{
+	const char* start_of_headers = strstr(request_str, "\r\n")+2;
+	
+	if(!start_of_headers) return 0;
+
+	const char* end_of_headers = strstr(request_str, "\r\n\r\n");
+
+	if(!end_of_headers) return 0;
+
+	size_t len = end_of_headers - start_of_headers;
+
+	char* headers = new char[len+1];
+
+	memcpy(headers, start_of_headers, len);
+	headers[len] = 0;
+	return headers;
+};
+
 char* Request::get_startline()
 {
 	if(!request_str) return 0;
