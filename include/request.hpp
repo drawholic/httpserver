@@ -22,7 +22,7 @@ public:
 	void set_request_str(const char*);
 };
 
-enum RequestEnum
+enum MethodEnum
 {
 	GET,
 	POST,
@@ -31,6 +31,6 @@ enum RequestEnum
 	PATCH,
 	PUT
 };
-RequestEnum get_request_enum(const char*);
+MethodEnum get_method_enum(const char*);
 
 #endif
