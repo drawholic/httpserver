@@ -24,3 +24,8 @@ char* Request::get_startline()
 {
 
 };
+
+void Request::set_request_str(char* req)
+{
+
+};
