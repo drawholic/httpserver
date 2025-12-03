@@ -9,4 +9,6 @@ add_library(server src/server.cpp src/request.cpp src/response.cpp)
 
 add_executable(main main.cpp)
 
+add_executable(client client.cpp)
+
 target_link_libraries(main server)
