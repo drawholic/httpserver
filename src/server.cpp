@@ -51,9 +51,16 @@ void Server::setup()
 void Server::loop()
 {
 	int client;
+	unsigned bytes;
 
 	while(client = accept(fd, 0, 0))
 	{
-
+		while(bytes = recv(client, buffer, BUF_MAX - 1, 0))
+		{
+			buffer[bytes] = 0;
+			
+				
+		};
+		close(client);
 	};
 };
