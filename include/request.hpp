@@ -22,4 +22,15 @@ public:
 	void set_request_str(const char*);
 };
 
+enum RequestEnum
+{
+	GET,
+	POST,
+	DELETE,
+	HEAD,
+	PATCH,
+	PUT
+};
+RequestEnum get_request_enum(const char*);
+
 #endif
