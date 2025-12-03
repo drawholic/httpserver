@@ -18,7 +18,7 @@ public:
 	char* get_headers();
 	char* get_body();
 
-	void set_request_str(char*);
+	void set_request_str(const char*);
 };
 
 #endif
