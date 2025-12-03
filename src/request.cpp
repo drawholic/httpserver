@@ -7,7 +7,18 @@ Request::Request()
 
 char* Request::get_method()
 {
+	if(!request_str) return 0;
+	char* space = strchr(request_str, ' ');
 
+	if(!space) return 0;
+
+	size_t len = space - request_str;
+
+	char* method = new char[len+1];
+	memcpy(method, request_str, len);
+	method[len] = 0;
+	
+	return method;
 };
 
 char* Request::get_headers()
