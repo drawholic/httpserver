@@ -49,7 +49,7 @@ void Server::setup()
 
 void Server::receive_message(int client)
 {
-	int bytes;
+	size_t bytes;
 
 	while(bytes = recv(client, buffer, BUF_MAX-1, 0))
 	{
