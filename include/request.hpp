@@ -7,7 +7,11 @@ class Request
 {
 	char* request_str;
 
-
+	char* headers;
+	char* method;
+	char* url;
+	char* startline;
+	
 public:
 	Request();
 
