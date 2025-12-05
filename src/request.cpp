@@ -14,7 +14,7 @@ char* Request::get_method()
 
 	size_t len = space - request_str;
 
-	char* method = new char[len+1];
+	method = new char[len+1];
 	memcpy(method, request_str, len);
 	method[len] = 0;
 
@@ -39,7 +39,7 @@ char* Request::get_url()
 
 	size_t len = space2 - (space1 + 1);
 
-	char* url = new char[len+1];
+	url = new char[len+1];
 	memcpy(url, space1+1, len);
 	url[len] = 0;
 
@@ -59,10 +59,11 @@ char* Request::get_headers()
 
 	size_t len = end_of_headers - start_of_headers;
 
-	char* headers = new char[len+1];
+	headers = new char[len+1];
 
 	memcpy(headers, start_of_headers, len);
 	headers[len] = 0;
+
 	return headers;
 };
 
@@ -78,7 +79,7 @@ char* Request::get_startline()
 
 	if(len > 0 && request_str[len-1] == '\r') len--;	
 
-	char* startline = new char[len + 1];
+	startline = new char[len + 1];
 	memcpy(startline, request_str, len);
 	startline[len] = 0;
 
@@ -89,6 +90,15 @@ void Request::set_request_str(const char* req)
 {
 	if(request_str)
 		delete[] request_str;
+
+	if(headers)
+		delete[] headers;
+
+	if(url)
+		delete[] url;
+	
+	if (startline)
+		delete[] startline;
 
 	request_str = new char[strlen(req)];
 
