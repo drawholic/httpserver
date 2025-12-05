@@ -71,6 +71,17 @@ void Server::handle_client(int client)
 
 };
 
+void Server::send_message(int){
+	
+};
+
+void Server::respond_client(int client, Request r)
+{
+	
+	
+
+};
+
 void Server::get_request(int client, Request& r)
 {
 
