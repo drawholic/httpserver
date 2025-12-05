@@ -96,7 +96,7 @@ void Request::set_request_str(const char* req)
 
 	if(url)
 		delete[] url;
-	
+
 	if (startline)
 		delete[] startline;
 
@@ -120,4 +120,15 @@ MethodEnum get_method_enum(const char* method)
 		return PATCH;
 	if(!strcmp(method, "PUT"))
 		return PUT;
+};
+
+
+
+void Request::print()
+{
+	std::cout << "URL: " << get_url() << "\n";
+	std::cout << "Method: " << get_method() << "\n";
+	std::cout << "Body: " << get_body() << "\n";  
+	std::cout << "Headers: " << get_headers() << "\n";
+
 };
