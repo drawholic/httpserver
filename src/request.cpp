@@ -3,9 +3,12 @@
 Request::Request()
 {
 	request_str = 0;
+	headers = 0;
+	url = 0;
+	startline = 0;
 };
 
-char* Request::get_method()
+char* Request::set_method()
 {
 	if(!request_str) return 0;
 	char* space = strchr(request_str, ' ');
@@ -21,12 +24,12 @@ char* Request::get_method()
 	return method;
 };
 
-char* Request::get_body()
+char* Request::set_body()
 {
-
+	return 0;
 };
 
-char* Request::get_url()
+char* Request::set_url()
 {
 	if(!request_str) return 0;
 
@@ -47,7 +50,7 @@ char* Request::get_url()
 };
 #include <iostream>
 
-char* Request::get_headers()
+char* Request::set_headers()
 {
 	const char* start_of_headers = strstr(request_str, "\r\n")+2;
 	
@@ -67,7 +70,7 @@ char* Request::get_headers()
 	return headers;
 };
 
-char* Request::get_startline()
+char* Request::set_startline()
 {
 	if(!request_str) return 0;
 
@@ -88,6 +91,7 @@ char* Request::get_startline()
 
 void Request::set_request_str(const char* req)
 {
+
 	if(request_str)
 		delete[] request_str;
 
@@ -104,6 +108,12 @@ void Request::set_request_str(const char* req)
 
 	strncpy(request_str, req, strlen(req));
 	request_str[strlen(req)] = 0;
+
+	startline = set_startline();
+	headers = set_headers();
+	method = set_method();
+	body = set_body();
+	url = set_url();
 };	
 
 MethodEnum get_method_enum(const char* method)
@@ -128,7 +138,32 @@ void Request::print()
 {
 	std::cout << "URL: " << get_url() << "\n";
 	std::cout << "Method: " << get_method() << "\n";
-	std::cout << "Body: " << get_body() << "\n";  
 	std::cout << "Headers: " << get_headers() << "\n";
+	std::cout << "Body: " << get_body() << "\n";  
 
+};
+
+char* Request::get_headers()
+{
+	return headers;
+};
+
+char* Request::get_url()
+{
+	return url;
+};
+
+char* Request::get_startline()
+{
+	return startline;
+};
+
+char* Request::get_body()
+{
+	return body;
+};
+
+char* Request::get_method()
+{
+	return method;
 };
