@@ -24,6 +24,8 @@ public:
 	char* get_url();
 
 	void set_request_str(const char*);
+
+	void print();
 };
 
 enum MethodEnum
