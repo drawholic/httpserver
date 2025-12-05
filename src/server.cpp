@@ -51,7 +51,7 @@ void Server::receive_message(int client)
 {
 	int bytes;
 
-	while(bytes = recv(client, buffer, BUF_MAX-1))
+	while(bytes = recv(client, buffer, BUF_MAX-1, 0))
 	{
 		buffer[bytes] = 0;
 	};
@@ -64,7 +64,7 @@ void Server::handle_client(int client)
 	receive_message(client);
 
 	Request r;
-	get_request(client);
+	get_request(client, r);
 
 	respond_client(client, r);
 
