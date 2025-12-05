@@ -15,14 +15,21 @@ class Request
 public:
 	Request();
 
-	char* get_method();
 
 
 	char* get_startline();
 	char* get_headers();
 	char* get_body();
 	char* get_url();
+	char* get_method();
 
+	char* set_method();	
+	char* set_startline();
+	char* set_headers();
+	char* set_body();
+	char* set_url();
+
+	
 	void set_request_str(const char*);
 
 	void print();
