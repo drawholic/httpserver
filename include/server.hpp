@@ -23,8 +23,9 @@ class Server
 	char buffer[BUF_MAX];
 
 	void handle_client(int);
-
-
+	void get_request(int);
+	void respond_client(int, Request);
+	void receive_message(int);
 
 public:
 	Server();
