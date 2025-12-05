@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
+
+#include "response.hpp"
 #include "request.hpp"
 
 const int BUF_MAX = 1024;
@@ -24,8 +26,11 @@ class Server
 
 	void handle_client(int);
 	void get_request(int, Request&);
+	void get_response(Request&, Response);
 	void respond_client(int, Request);
+	
 	void receive_message(int);
+	void send_message(int);
 
 public:
 	Server();
