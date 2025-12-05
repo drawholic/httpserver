@@ -49,6 +49,12 @@ void Server::setup()
 
 void Server::receive_message(int client)
 {
+	int bytes;
+
+	while(bytes = recv(client, buffer, BUF_MAX-1))
+	{
+		buffer[bytes] = 0;
+	};
 
 };
 
@@ -57,16 +63,19 @@ void Server::handle_client(int client)
 	
 	receive_message(client);
 
-	Request r =	get_request(client);
+	Request r;
+	get_request(client);
 
 	respond_client(client, r);
 
-	
+
 };
 
-Request Server::get_request(int client)
+void Server::get_request(int client, Request& r)
 {
 
+	r.set_request_str(buffer);
+	
 };
 
 void Server::loop()
