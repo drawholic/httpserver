@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
+#include "request.hpp"
 
 const int BUF_MAX = 1024;
 
