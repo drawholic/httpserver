@@ -26,7 +26,7 @@ char* Request::set_method()
 
 char* Request::set_body()
 {
-	return 0;
+	return "";
 };
 
 char* Request::set_url()
