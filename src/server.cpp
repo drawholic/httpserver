@@ -47,16 +47,26 @@ void Server::setup()
 	}
 };
 
+void Server::receive_message(int client)
+{
+
+};
+
 void Server::handle_client(int client)
 {
-	unsigned bytes;
+	
+	receive_message(client);
 
-	while(bytes = recv(client, buffer, BUF_MAX -1, 0))
-	{
-		buffer[bytes] = 0;
-	};
+	Request r =	get_request(client);
 
-	close(client);
+	respond_client(client, r);
+
+	
+};
+
+Request Server::get_request(int client)
+{
+
 };
 
 void Server::loop()
@@ -66,12 +76,9 @@ void Server::loop()
 
 	while(client = accept(fd, 0, 0))
 	{
-		while(bytes = recv(client, buffer, BUF_MAX - 1, 0))
-		{
-			buffer[bytes] = 0;
-			
-				
-		};
+		handle_client(client);
+
+
 		close(client);
 	};
 };
