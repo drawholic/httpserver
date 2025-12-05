@@ -11,7 +11,7 @@ class Request
 	char* method;
 	char* url;
 	char* startline;
-	
+	char* body;
 public:
 	Request();
 
